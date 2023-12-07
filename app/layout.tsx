@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 // eslint-disable-next-line import/extensions
 import pkg from '../package.json';
 
-export const fontSans = FontSans({
+const fontSans = FontSans({
   /* eslint-disable quotes */
   subsets: ['latin'],
   variable: '--font-sans',
