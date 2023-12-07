@@ -8,7 +8,7 @@
       "type": "node",
       "request": "attach",
       "name": "Attach to Node",
-      "port": 9340,
+      "port": 9230,
       "restart": true,
       "continueOnAttach": true
     }
