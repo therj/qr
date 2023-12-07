@@ -16,7 +16,7 @@ export const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: `Mero QR`,
-  description: `A pet project from ${pkg.author}`,
+  description: `${pkg.description} - Mero QR`,
 };
 
 export default function RootLayout({

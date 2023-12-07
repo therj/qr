@@ -1,7 +1,7 @@
 {
   "name": "mero-qr",
   "version": "0.1.0-0",
-  "description": "Your QR here! Create. Scan. Share.",
+  "description": "Personal Data, Private QR",
   "private": true,
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
