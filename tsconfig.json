@@ -25,9 +25,12 @@
       }
     ],
     "paths": {
-      "src/*": [
+      "@ui/*": [
+        "./src/components/ui/*"
+      ],
+      "@/*": [
         "./src/*"
-      ]
+      ],
     }
   },
   "include": [
@@ -35,7 +38,8 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx"
+    "**/*.tsx",
+    "tailwind.config.js"
   ],
   "exclude": [
     "node_modules"

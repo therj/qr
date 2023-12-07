@@ -50,40 +50,6 @@ const customRules = {
  *
  */
 
-const nodeBaseEnvExports = {
-  env: {
-    browser: true,
-    commonjs: true,
-    es2021: true,
-    jest: true,
-  },
-  plugins: [`import`],
-  extends: [`airbnb-base`, `plugin:prettier/recommended`],
-  ignorePatterns: [`node_modules/`, `dist/`, `.turbo`, `.next`],
-  parserOptions: {
-    ecmaVersion: `latest`,
-    project,
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        project,
-      },
-    },
-  },
-  rules: customRules,
-  overrides: [
-    {
-      files: [`**/*.ts`, `**/*.tsx`],
-      extends: [
-        `plugin:@typescript-eslint/recommended`, // Extend TypeScript rules
-      ],
-      parser: `@typescript-eslint/parser`,
-      plugins: [`@typescript-eslint`],
-    },
-  ],
-};
-
 module.exports = {
   env: {
     browser: true,
