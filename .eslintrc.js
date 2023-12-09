@@ -13,6 +13,7 @@ const customRules = {
       pattern: {
         js: `never`,
         ts: `never`,
+        json: `always`,
       },
     },
   ],

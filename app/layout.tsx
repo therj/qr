@@ -1,11 +1,10 @@
 import { ThemeProvider } from '@/components/theme-provider';
 import type { Metadata } from 'next';
 import { Inter as FontSans } from 'next/font/google';
-import './globals.css';
+import './globals.scss';
 
 import { cn } from '@/lib/utils';
-// eslint-disable-next-line import/extensions
-import pkg from '../package.json';
+import { app } from '../src/constants';
 
 const fontSans = FontSans({
   /* eslint-disable quotes */
@@ -15,8 +14,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: `Mero QR`,
-  description: `${pkg.description} - Mero QR`,
+  title: app.title,
+  description: app.description,
 };
 
 export default function RootLayout({
@@ -33,7 +32,7 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider
-          attribute="class"
+          attribute="data-theme"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
