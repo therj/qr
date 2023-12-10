@@ -62,9 +62,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <span className="absolute right-10 top-10">
-            <ThemeToggle />
-          </span>
+          <ThemeToggle />
         </ThemeProvider>
       </body>
     </html>
