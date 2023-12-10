@@ -125,7 +125,7 @@ export function QRCard({
         </div>
       </CardContent>
       <CardFooter>
-        <Button className="w-full flex items-center">
+        <Button className="w-full flex items-center" asChild>
           <Link href="/" className="flex items-center">
             <HomeIcon className="mr-2 h-4 w-4" /> Go Home
           </Link>
