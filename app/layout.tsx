@@ -34,7 +34,6 @@ export const metadata: Metadata = {
   ],
   creator: `Rabindra Joshi`,
   publisher: `Rabindra Joshi`,
-  //
 
   formatDetection: {
     email: true,

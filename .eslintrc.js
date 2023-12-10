@@ -30,7 +30,10 @@ const customRules = {
   'linebreak-style': [`error`, `unix`],
   'eol-last': [`warn`, `always`],
   'no-console': `error`,
-  'no-unused-vars': [`error`, { argsIgnorePattern: `^_` }],
+  'no-unused-vars': [
+    `error`,
+    { argsIgnorePattern: `^_`, varsIgnorePattern: `^__` },
+  ],
   'no-underscore-dangle': [`error`, { allow: [`_id`, `_doc`] }],
   quotes: [
     `error`,
@@ -80,6 +83,10 @@ module.exports = {
     ...customRules,
     'import/no-default-export': `off`,
     'import/prefer-default-export': `off`,
+    '@typescript-eslint/no-unused-vars': [
+      `error`,
+      { argsIgnorePattern: `^_`, varsIgnorePattern: `^_` },
+    ],
   },
   overrides: [
     {
