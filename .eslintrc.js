@@ -13,6 +13,7 @@ const customRules = {
       pattern: {
         js: `never`,
         ts: `never`,
+        json: `always`,
       },
     },
   ],
@@ -29,7 +30,10 @@ const customRules = {
   'linebreak-style': [`error`, `unix`],
   'eol-last': [`warn`, `always`],
   'no-console': `error`,
-  'no-unused-vars': [`error`, { argsIgnorePattern: `^_` }],
+  'no-unused-vars': [
+    `error`,
+    { argsIgnorePattern: `^_`, varsIgnorePattern: `^__` },
+  ],
   'no-underscore-dangle': [`error`, { allow: [`_id`, `_doc`] }],
   quotes: [
     `error`,
@@ -49,40 +53,6 @@ const customRules = {
  * For more information, see https://github.com/vercel/style-guide
  *
  */
-
-const nodeBaseEnvExports = {
-  env: {
-    browser: true,
-    commonjs: true,
-    es2021: true,
-    jest: true,
-  },
-  plugins: [`import`],
-  extends: [`airbnb-base`, `plugin:prettier/recommended`],
-  ignorePatterns: [`node_modules/`, `dist/`, `.turbo`, `.next`],
-  parserOptions: {
-    ecmaVersion: `latest`,
-    project,
-  },
-  settings: {
-    'import/resolver': {
-      typescript: {
-        project,
-      },
-    },
-  },
-  rules: customRules,
-  overrides: [
-    {
-      files: [`**/*.ts`, `**/*.tsx`],
-      extends: [
-        `plugin:@typescript-eslint/recommended`, // Extend TypeScript rules
-      ],
-      parser: `@typescript-eslint/parser`,
-      plugins: [`@typescript-eslint`],
-    },
-  ],
-};
 
 module.exports = {
   env: {
@@ -113,6 +83,10 @@ module.exports = {
     ...customRules,
     'import/no-default-export': `off`,
     'import/prefer-default-export': `off`,
+    '@typescript-eslint/no-unused-vars': [
+      `error`,
+      { argsIgnorePattern: `^_`, varsIgnorePattern: `^_` },
+    ],
   },
   overrides: [
     {
