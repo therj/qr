@@ -5,7 +5,7 @@ import './globals.scss';
 
 import { cn } from '@/lib/utils';
 import { app } from '@/constants';
-import '@/lib/versionLogger';
+import { AppVersion } from '@/components/AppVersion';
 
 const fontSans = FontSans({
   /* eslint-disable quotes */
@@ -64,6 +64,7 @@ export default function RootLayout({
         >
           {children}
           <ThemeToggle />
+          <AppVersion />
         </ThemeProvider>
       </body>
     </html>

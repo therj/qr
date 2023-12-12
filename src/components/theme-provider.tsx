@@ -25,7 +25,7 @@ interface ThemeToggleProps
 }
 
 const ThemeToggle: React.FC<ThemeToggleProps> = ({
-  className = `absolute top-10 right-10`,
+  className = `fixed top-5 right-10 z-50`,
 }) => {
   const { setTheme } = useTheme();
 
