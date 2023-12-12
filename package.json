@@ -1,6 +1,6 @@
 {
   "name": "mero-qr",
-  "version": "0.0.0-0",
+  "version": "1.0.0-alpha.0",
   "description": "Personal Data, Private QR",
   "private": true,
   "scripts": {
