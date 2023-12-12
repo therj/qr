@@ -5,13 +5,19 @@
   "[javascript]": {
     // "editor.defaultFormatter": "vscode.typescript-language-features",\
     // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    // "editor.defaultFormatter": "vscode.typescript-language-features"
+    // "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[scss]": {
+    // "editor.defaultFormatter": "vscode.typescript-language-features",\
+    // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    "editor.defaultFormatter": "sibiraj-s.vscode-scss-formatter"
     // "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "[typescriptreact]": {
     // "editor.defaultFormatter": "vscode.typescript-language-features",\
     // "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+    "editor.defaultFormatter": "vscode.typescript-language-features"
     // "editor.defaultFormatter": "vscode.typescript-language-features"
   },
   "editor.codeActionsOnSave": {
@@ -23,6 +29,6 @@
     "javascriptreact",
     "typescriptreact"
   ],
-  "files.autoSave": "onWindowChange",
+  "files.autoSave": "onFocusChange",
   "editor.wordWrapColumn": 100
 }
