@@ -4,7 +4,8 @@ import { Inter as FontSans } from 'next/font/google';
 import './globals.scss';
 
 import { cn } from '@/lib/utils';
-import { app } from '../src/constants';
+import { app } from '@/constants';
+import '@/lib/versionLogger';
 
 const fontSans = FontSans({
   /* eslint-disable quotes */
