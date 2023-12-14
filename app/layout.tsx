@@ -6,6 +6,7 @@ import './globals.scss';
 import { cn } from '@/lib/utils';
 import { app } from '@/constants';
 import { AppVersion } from '@/components/AppVersion';
+import { NavBar } from '@/components/navbar';
 
 const fontSans = FontSans({
   /* eslint-disable quotes */
@@ -62,8 +63,8 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <NavBar />
           {children}
-          <ThemeToggle className="border-primary bg-background" />
           <AppVersion />
         </ThemeProvider>
       </body>
