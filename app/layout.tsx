@@ -63,7 +63,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
-          <ThemeToggle />
+          <ThemeToggle className="border-primary bg-background" />
           <AppVersion />
         </ThemeProvider>
       </body>

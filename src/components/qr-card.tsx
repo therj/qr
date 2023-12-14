@@ -28,10 +28,6 @@ import Link from 'next/link';
 
 const notifications = [
   {
-    title: `Your call has been confirmed.`,
-    description: `1 hour ago`,
-  },
-  {
     title: `You have a new message!`,
     description: `1 hour ago`,
   },
@@ -49,7 +45,7 @@ export interface CardProps extends React.ComponentProps<typeof Card> {
 }
 
 export function QRCard({
-  className,
+  className = `items-center shadow sm:flex`,
   bookmark,
   title,
   itemName,
@@ -87,7 +83,7 @@ export function QRCard({
   }, [isHovered, bookmark]);
 
   return (
-    <Card className={cn(`w-[380px]`, `relative`, className)} {...props}>
+    <Card className={cn(`flex flex-col relative`, className)} {...props}>
       <CardHeader>
         {<CardTitle>{title ?? `Untitled ${itemName ?? `Item`}`}</CardTitle>}
         {/* <CardTitle>No Title</CardTitle> */}
@@ -106,7 +102,7 @@ export function QRCard({
           </div>
         </div>
         <div>
-          {/* {notifications.map((notification, index) => (
+          {notifications.map((notification, index) => (
             <div
               key={index}
               className="mb-4 grid grid-cols-[25px_1fr] items-start pb-4 last:mb-0 last:pb-0"
@@ -121,7 +117,7 @@ export function QRCard({
                 </p>
               </div>
             </div>
-          ))} */}
+          ))}
         </div>
       </CardContent>
       <CardFooter>
