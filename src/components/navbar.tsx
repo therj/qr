@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { HomeIcon } from '@radix-ui/react-icons';
 import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 import { Button } from './ui/button';
 import { ThemeToggle } from './theme-provider';
 
@@ -11,7 +11,13 @@ function NavBar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const isHome = usePathname() === `/`;
 
   return (
-    <nav className="fixed w-full z-20 top-0 start-0 border-b bg-background">
+    <nav
+      className={cn(
+        `fixed w-full z-20 top-0 start-0 border-b bg-background`,
+        className
+      )}
+      {...props}
+    >
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           href="/"
