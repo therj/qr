@@ -1,5 +1,19 @@
 # Mero QR Changelog
 
+## v1.0.0-alpha.3
+
+_Design only release._
+
+- Get rid of render count on each card
+- Introduce card footer actions - download, copy, share, edit, delete
+- Replace BookmarkIcon with DrawingPinIcon
+- Card list design now reflects actual final intended UI
+- Replace Logo in nav with text only
+- 2 column navbar instead of 3 column - keep Home/Design and theme toggle icon together
+- Truncate overflowing text in card title, description and content
+- Less bright, high contrast QR images in dark mode
+
+
 ## v1.0.0-alpha.2
 
 _Design only release._

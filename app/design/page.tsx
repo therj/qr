@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function Home() {
   return (
     <>
-      <main className="items-center justify-center p-8 mx-auto mt-8 max-w-screen-xl lg:py-16 lg:px-6 gap-8 sm:p-16 md:p-20 lg:p-24">
+      <main className="items-center justify-center gap-8 p-4 mx-auto max-w-screen-xl mt-16 lg:mt-20  sm:px-8 lg:px-4">
         <CardList />
       </main>
 

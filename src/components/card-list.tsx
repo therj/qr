@@ -7,18 +7,123 @@ interface cardListProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const CardList: React.FC<cardListProps> = ({ className }) => {
-  const items = [
-    `WiFi`,
-    `Link`,
-    `Text`,
-    `Contact`,
-    `Email`,
-    `Phone`,
-    `SMS`,
-    `Location`,
+  const qrCodeData = [
+    {
+      type: `wifi`,
+      title: `Mero Internet`,
+      description: `Second floor only`,
+      isBookmark: true,
+      data: {
+        name: `ALHN-69B5`,
+      },
+    },
+    {
+      type: `link`,
+      title: `Personal Website`,
+      description: `Visit my personal website`,
+      isBookmark: true,
+      data: {
+        link: `https://www.example.com`,
+      },
+    },
+    {
+      type: `text`,
+      title: `Important Note`,
+      description: `Important note to self`,
+      data: {
+        text: `Remember to buy groceries. Remember to buy groceries. Again! Remember to buy groceries. Remember to buy groceries. Again!`,
+      },
+    },
+    {
+      type: `book`,
+      title: `The Abominable - Dan Simmons`,
+      description: `A thrilling tale of high-altitude death and survival set on the snowy summits of Mount Everest, from the bestselling author of The Terror.`,
+      data: {
+        title: `The Abominable`,
+        author: `Dan Simmons`,
+        isbn13: `9780316198837`,
+      },
+    },
+    {
+      type: `contact`,
+      title: `Contact Information`,
+      description: `Reach out to me anytime`,
+      data: {
+        name: `John Doe`,
+        phone: `123-456-7890`,
+        email: `john.doe@example.com`,
+      },
+    },
+    {
+      type: `contact`,
+      title: `Business Card`,
+      description: `Connect with me professionally`,
+      data: {
+        name: `Jane Smith`,
+        jobTitle: `CEO`,
+        company: `XYZ Corp`,
+        email: `jane.smith@xyzcorp.com`,
+        phoneNumber: `987-654-3210`,
+      },
+    },
+    {
+      type: `sms`,
+      title: `Meeting with the God`,
+      description: `Access code to the heaven`,
+      data: {
+        to: `9876543210`,
+        text: `What time is the world ending?`,
+      },
+    },
+    {
+      type: `link`,
+      title: `Social Media Profile`,
+      description: `Connect with me on social media`,
+      data: {
+        link: `https://www.twitter.com/example`,
+      },
+    },
+    {
+      type: `phone`,
+      title: `Emergency Contact`,
+      description: `In case of emergencies`,
+      data: {
+        name: `John Doe`,
+        phone: `123-456-7890`,
+        email: `johndoe@example.com`,
+        organization: `Emergency Services`,
+        contactName: `Emergency Services`,
+      },
+    },
+    {
+      type: `email`,
+      title: `Send Mail to PO`,
+      description: `Get Approval for deployment`,
+      data: {
+        to: `johndoe@example.com`,
+        cc: `johndoe2@example.com`,
+        subject: `Emergency Services`,
+        body: `Deployment Approval, please`,
+      },
+    },
+    {
+      type: `text`,
+      title: `Text Message`,
+      description: `Important text`,
+      data: {
+        text: `Read this important message!`,
+      },
+    },
+    {
+      type: `Custom`,
+      title: `Custom QR Code`,
+      description: `Create your own QR code`,
+      data: {
+        customData: `Your custom data here`,
+      },
+    },
   ];
-  // choose random item from array
-  const getItemName = () => items[Math.floor(Math.random() * items.length)];
+
   return (
     <div
       className={cn(
@@ -26,17 +131,10 @@ const CardList: React.FC<cardListProps> = ({ className }) => {
         className
       )}
     >
-      <QRCard bookmark title="Hello World" />
-      <QRCard bookmark itemName={getItemName()} />
-      <QRCard title="Aditya Was Not Here" />
-      <QRCard title="Unstable Diffusion"></QRCard>
-      <QRCard itemName={getItemName()}></QRCard>
-      <QRCard itemName={getItemName()}></QRCard>
-      <QRCard itemName={getItemName()}></QRCard>
-      <QRCard itemName={getItemName()}></QRCard>
-      <QRCard itemName={getItemName()}></QRCard>
-      <QRCard itemName={getItemName()}></QRCard>
-      <QRCard itemName={getItemName()}></QRCard>
+      {qrCodeData.map((qrCode) => (
+        <QRCard key={qrCode.type + qrCode.title} {...qrCode} />
+      ))}
+
       {/* 4 extra cards */}
       <ExtraCards />
     </div>

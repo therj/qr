@@ -1,5 +1,6 @@
 const tailwindCssAnimate = require(`tailwindcss-animate`);
 const { fontFamily } = require(`tailwindcss/defaultTheme`);
+const tailwindLineClamp = require(`@tailwindcss/line-clamp`);
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -79,5 +80,5 @@ module.exports = {
       },
     },
   },
-  plugins: [tailwindCssAnimate],
+  plugins: [tailwindCssAnimate, tailwindLineClamp],
 };
