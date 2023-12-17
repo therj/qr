@@ -46,134 +46,96 @@ import {
 import React, { useEffect, useMemo, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import {
+  TBook,
+  TContact,
+  TEmail,
+  TLink,
+  TPhone,
+  TSms,
+  TText,
+  TQr,
+} from '@/types/card';
+import QRCodeTypeEnum from '@/constants/enums';
 
-export interface CardProps extends React.ComponentProps<typeof Card> {
-  type?: string;
-  title?: string;
-  description?: string;
-  isBookmark?: boolean;
-  data?: object;
-}
-type WifiCardProps = CardProps & {
-  type: `wifi`;
-  data: {
-    name: string;
-  };
-};
-type LinkCardProps = CardProps & {
-  type: `link`;
-  data: {
-    link: string;
-  };
-};
-type TextCardProps = CardProps & {
-  type: `text`;
-  data: {
-    text: string;
-  };
-};
-type ContactCardProps = CardProps & {
-  type: `contact`;
-  data: {
-    name: string;
-    phoneNumber: string;
-    email: string;
-  };
-};
-type EmailCardProps = CardProps & {
-  type: `email`;
-  data: {
-    email: string;
-    subject: string;
-    body: string;
-  };
-};
-type PhoneCardProps = CardProps & {
-  type: `phone`;
-  data: {
-    phoneNumber: string;
-  };
-};
-// mix the prop types
-type QRCardProps =
-  | CardProps
-  | WifiCardProps
-  | LinkCardProps
-  | TextCardProps
-  | ContactCardProps
-  | EmailCardProps
-  | PhoneCardProps;
-
-// Define a general interface for the data object
-interface GeneralQrData {
-  // Add other properties as needed
-  author?: string;
-  body?: string;
-  company?: string;
-  email?: string;
-  link: string;
-  name: string;
-  phone: string;
-  subject: string;
-  text: string;
-  title?: string;
-}
-
-const getQrData = (type: string, data: GeneralQrData) => {
+const getQrData = (type: string, data: TQr[`data`]) => {
   let Icon: React.ElementType;
   let typeText;
-  let dataTitleText = data.title;
+  let dataTitleText = ` data.title`;
   switch (type) {
-    case `book`:
+    case QRCodeTypeEnum.book:
+      // eslint-disable-next-line no-case-declarations
+      const bookData = data as TBook[`data`];
       typeText = `Book`;
-      dataTitleText = data.title;
-      if (data.author) {
-        dataTitleText = `${dataTitleText} (${data.author})`;
+      dataTitleText = bookData.title;
+      if (bookData.author) {
+        dataTitleText = `${dataTitleText} (${bookData.author})`;
       }
       Icon = BookOpenIcon;
       break;
-    case `phone`:
+    case QRCodeTypeEnum.phone:
       typeText = `Phone`;
-      dataTitleText = data.phone;
-      if (data.name) {
-        dataTitleText = `${dataTitleText} (${data.name})`;
+      // eslint-disable-next-line no-case-declarations
+      const phoneData = data as TPhone[`data`];
+      dataTitleText = phoneData.phoneNumber;
+      if (phoneData.phoneNumber) {
+        dataTitleText = `${dataTitleText} (${phoneData.name})`;
       }
 
       Icon = PhoneIcon;
       break;
-    case `contact`:
+    case QRCodeTypeEnum.contact:
       typeText = `Contact`;
-      dataTitleText = data.name || data.email || data.phone;
+      // eslint-disable-next-line no-case-declarations
+      const contactData = data as TContact[`data`];
 
-      if (data.company) {
-        dataTitleText = `${dataTitleText} (${data.company})`;
+      dataTitleText =
+        contactData.name || contactData.email || contactData.phoneNumber;
+
+      if (contactData.company) {
+        dataTitleText = `${dataTitleText} (${contactData.company})`;
+
+        if (contactData.jobTitle) {
+          dataTitleText = `${dataTitleText} (${contactData.company}, ${contactData.jobTitle})`;
+        }
       }
       Icon = UserIcon;
       break;
     case `wifi`:
       typeText = `WiFi`;
-      dataTitleText = data.name;
+      // eslint-disable-next-line no-case-declarations
+      const wifiData = data as TContact[`data`];
+      dataTitleText = wifiData.name;
       Icon = WifiIcon;
       break;
     case `link`:
       typeText = `Link`;
-      dataTitleText = data.link;
+      // eslint-disable-next-line no-case-declarations
+      const linkData = data as TLink[`data`];
+      dataTitleText = linkData.url;
       Icon = LinkIcon;
       break;
     case `text`:
       typeText = `Text`;
-      dataTitleText = data.text;
+      // eslint-disable-next-line no-case-declarations
+      const textData = data as TText[`data`];
+      dataTitleText = textData.text;
       Icon = TextIcon;
       break;
     case `email`:
       typeText = `Email`;
-      dataTitleText = `Email: ${data.body || ``}`;
+      // eslint-disable-next-line no-case-declarations
+      const emailData = data as TEmail[`data`];
+
+      dataTitleText = `Email: ${emailData.body || ``}`;
 
       Icon = EnvelopeIcon;
       break;
     case `sms`:
       typeText = `SMS Message`;
-      dataTitleText = data.text;
+      // eslint-disable-next-line no-case-declarations
+      const smsData = data as TSms[`data`];
+      dataTitleText = smsData.text;
       Icon = ChatBubbleBottomCenterTextIcon;
       break;
     default:
@@ -190,9 +152,8 @@ const getQrData = (type: string, data: GeneralQrData) => {
 export function QRCard({
   className = `items - center shadow sm: flex`,
   ...props
-}: QRCardProps) {
+}: TQr) {
   const { type, title, description, data, isBookmark, ...cardProps } = props;
-
   const { Icon, typeText, dataTitleText } = getQrData(type, data);
   const cardTitleText = title ?? `Untitled ${typeText ?? `Item`}`;
 

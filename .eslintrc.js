@@ -34,12 +34,14 @@ const customRules = {
     `error`,
     { argsIgnorePattern: `^_`, varsIgnorePattern: `^__` },
   ],
-  'no-underscore-dangle': [`error`, { allow: [`_id`, `_doc`] }],
+  'no-underscore-dangle': [`error`, { allow: [`^__`, `_id`, `_doc`] }],
   quotes: [
     `error`,
     `backtick`,
     { avoidEscape: true, allowTemplateLiterals: false },
   ],
+  'import/no-default-export': `off`,
+  'import/prefer-default-export': `off`,
   // "unicorn/filename-case": ["off"],
   // "@typescript-eslint/explicit-function-return-type": ["off"],
   // "@typescript-eslint/array-type": ["error", { default: "generic" }],
@@ -81,12 +83,6 @@ module.exports = {
   // add rules configurations here
   rules: {
     ...customRules,
-    'import/no-default-export': `off`,
-    'import/prefer-default-export': `off`,
-    '@typescript-eslint/no-unused-vars': [
-      `error`,
-      { argsIgnorePattern: `^_`, varsIgnorePattern: `^_` },
-    ],
   },
   overrides: [
     {
@@ -96,6 +92,16 @@ module.exports = {
       ],
       parser: `@typescript-eslint/parser`,
       plugins: [`@typescript-eslint`],
+      rules: {
+        ...customRules,
+        'no-shadow': `off`,
+        '@typescript-eslint/no-shadow': `error`,
+        'no-unused-vars': `off`,
+        '@typescript-eslint/no-unused-vars': [
+          `error`,
+          { argsIgnorePattern: `^_`, varsIgnorePattern: `^_` },
+        ],
+      },
     },
   ],
 };
