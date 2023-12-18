@@ -25,18 +25,17 @@
     --input: hsl(240 5.9% 90%);
     --ring: hsl(142.1 76.2% 72.6%);
     --radius: 0.5rem;
-
-    --foreground-rgb: rgb(0, 0, 0);
-    --background-start-rgb: rgb(214, 219, 220);
-    --background-end-rgb: rgb(255, 255, 255);
   }
 
   /* Dark theme */
   :root[data-theme="dark"] {
     --background: hsl(20 14.3% 4.1%);
     --foreground: hsl(0 0% 95%);
+    // --background: hsl(20 14.3% 8.1%);
+    // --foreground: hsl(0 0% 85%);
     --card: hsl(24 9.8% 10%);
     --card-foreground: hsl(0 0% 95%);
+    // --card-foreground: hsl(0 0% 85%);
     --popover: hsl(0 0% 9%);
     --popover-foreground: hsl(0 0% 95%);
     --primary: hsl(142.1 70.6% 45.3%);
@@ -52,10 +51,6 @@
     --border: hsl(240 3.7% 15.9%);
     --input: hsl(240 3.7% 15.9%);
     --ring: hsl(142.4 71.8% 29.2%);
-
-    --foreground-rgb: rgb(255, 255, 255);
-    --background-start-rgb: rgb(0, 0, 0);
-    --background-end-rgb: rgb(0, 0, 0);
   }
 }
 
@@ -66,8 +61,5 @@
 
   body {
     @apply bg-background text-foreground;
-    color: var(--foreground-rgb);
-    background: hsl(linear-gradient(to bottom), transparent, var(--background-end-rgb))
-      var(--background-start-rgb);
   }
 }
