@@ -149,10 +149,7 @@ const getQrData = (type: string, data: TQr[`data`]) => {
   };
 };
 
-export function QRCard({
-  className = `items - center shadow sm: flex`,
-  ...props
-}: TQr) {
+export function QRCard({ className = `shadow sm:flex`, ...props }: TQr) {
   const { type, title, description, data, isBookmark, ...cardProps } = props;
   const { Icon, typeText, dataTitleText } = getQrData(type, data);
   const cardTitleText = title ?? `Untitled ${typeText ?? `Item`}`;

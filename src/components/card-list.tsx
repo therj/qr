@@ -9,7 +9,7 @@ import { qrCodeSeedData } from '@/constants';
 import { useEffect, useState } from 'react';
 import { QRCard } from './qr-card';
 import ExtraCards from './extra-cards.temp';
-import { QRCardLoading, QRCardSeed, QRCardSkeleton } from './skeleton-qr-card';
+import { QRCardSeed, QRCardSkeleton } from './skeleton-qr-card';
 
 interface cardListProps extends React.HTMLAttributes<HTMLDivElement> {
   className?: string;
@@ -18,7 +18,7 @@ interface cardListProps extends React.HTMLAttributes<HTMLDivElement> {
 const CardList: React.FC<cardListProps> = ({ className }) => {
   const [loading, setLoading] = useState(true);
 
-  const qrCodeDataFriends = useLiveQuery(async () => {
+  const idbQrs = useLiveQuery(async () => {
     try {
       const qrs = await db.qrs.toArray();
 
@@ -30,10 +30,10 @@ const CardList: React.FC<cardListProps> = ({ className }) => {
   }, []);
 
   useEffect(() => {
-    if (qrCodeDataFriends) {
+    if (idbQrs) {
       setLoading(false);
     }
-  }, [qrCodeDataFriends]);
+  }, [idbQrs]);
 
   const seed = async () => {
     try {
@@ -50,24 +50,20 @@ const CardList: React.FC<cardListProps> = ({ className }) => {
         className
       )}
     >
-      {/* loading card with text */}
-      {loading && <QRCardLoading />}
-
-      {/* FIXME: skeleton colors not appearing */}
-      {loading && <QRCardSkeleton />}
-
-      {/* No data, seed me */}
-      {!loading && !qrCodeDataFriends?.length && (
+      {/* No data, seed me please */}
+      {!loading && !idbQrs?.length && (
         <QRCardSeed
           seed={seed}
           disabled={loading}
           qrCodeDataLength={qrCodeSeedData.length}
         />
       )}
-      {/* Extra skeleton */}
-      <QRCardSkeleton />
 
-      {qrCodeDataFriends?.map((qrCode) => (
+      {/* loading data from indexedDB */}
+      {loading &&
+        Array.from({ length: 6 }).map((_, i) => <QRCardSkeleton key={i} />)}
+
+      {idbQrs?.map((qrCode) => (
         <QRCard
           key={qrCode.type + qrCode.title || qrCode.description || ``}
           {...qrCode}

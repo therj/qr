@@ -1,6 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
+import { Button } from '@/components/ui/button';
 import {
   Card,
   CardContent,
@@ -11,73 +12,43 @@ import {
 } from '@/components/ui/card';
 import React from 'react';
 import { Skeleton } from '@ui/skeleton';
-import { Button } from '@ui/button';
 
-export function QRCardSkeleton({ className = `shadow sm:flex` }) {
+export function QRCardSkeleton({
+  className = `shadow sm:flex`,
+}: {
+  className?: string;
+}) {
   return (
     <Card className={cn(`flex flex-col relative max-w-full`, className)}>
       <CardHeader className="max-w-full mb-auto">
-        <CardTitle className="truncate space-y-2">
-          <Skeleton className="w-[200px] h-[10px]"></Skeleton>
-        </CardTitle>
-        <CardDescription className="">
-          <Skeleton className="w-[200px] h-[10px]"></Skeleton>
-        </CardDescription>
+        <Skeleton className="h-[1rem] w-2/4" />
+
+        <Skeleton className="h-5 w-3/4"></Skeleton>
       </CardHeader>
       <CardContent className="max-w-full grid gap-4">
         <div className="w-full items-center p-0 flex flex-row gap-4">
           <Skeleton className="flex-none mr-1 h-6 w-6" />
-          <div className="flex-col space-y-1">
-            <p className="text-sm font-medium leading-none line-clamp-1">
-              <Skeleton className="w-[200px] h-[10px]" />
-            </p>
-            <p className="text-sm text-muted-foreground truncate">
-              <Skeleton className="w-[100px] h-[10px]" />
-            </p>
+          <div className="flex-col space-y-1 w-full">
+            <Skeleton className="h-[0.875rem] w-2/4" />
+            <Skeleton className="h-5 w-1/4" />
           </div>
         </div>
-        <Skeleton className="place-self-center dark:contrast-125 dark:brightness-75 mt-auto w-[200px] h-[200px]" />
+        <Skeleton className="place-self-center mt-auto grid place-items-center w-[200px] h-[200px]" />
       </CardContent>
 
       <CardFooter className="w-full flex flex-row justify-between	bg-muted py-4 mb-0">
-        <div className="flex gap-6">
-          <Skeleton className="h-6 w-6" />
-          <Skeleton className="h-6 w-6" />
-          <Skeleton className="h-6 w-6" />
+        <div className="flex gap-2">
+          <Skeleton className="h-8 w-8 px-2 py-2" />
+          <Skeleton className="h-8 w-8 px-2 py-2" />
+          <Skeleton className="h-8 w-8 px-2 py-2" />
         </div>
 
-        <div className="flex gap-6">
-          <Skeleton className="h-6 w-6" />
-          <Skeleton className="h-6 w-6" />
+        <div className="flex gap-2">
+          <Skeleton className="h-9 w-9 px-2 py-2" />
+          <Skeleton className="h-9 w-9 px-2 py-2" />
         </div>
       </CardFooter>
-      <Skeleton className="absolute cursor-pointer px-2 py-2 top-4 right-4 h-6 w-6"></Skeleton>
-    </Card>
-  );
-}
-
-export function QRCardLoading({ className = `shadow sm:flex` }) {
-  return (
-    <Card className={cn(`flex flex-col relative max-w-full`, className)}>
-      <CardHeader className="max-w-full mb-auto">
-        <CardTitle className="truncate">Loading...</CardTitle>
-        <CardDescription className="truncate">
-          Please wait while we load your QR data...
-        </CardDescription>
-      </CardHeader>
-      <CardContent className="max-w-full grid gap-4">
-        <div className="w-full items-center p-0 flex flex-row gap-4">
-          <Button size={`lg`} variant={`outline`}>
-            {`<Load Skeleton here>`}
-          </Button>
-        </div>
-      </CardContent>
-
-      <CardFooter className="w-full flex flex-row justify-between	bg-muted py-4 mb-0">
-        <p className="text-sm text-muted-foreground truncate">
-          You can seed items to begin with
-        </p>
-      </CardFooter>
+      <Skeleton className="absolute cursor-pointer px-2 py-2 top-4 right-4 h-9 w-9" />
     </Card>
   );
 }
@@ -87,33 +58,56 @@ export function QRCardSeed({
   qrCodeDataLength,
   disabled = false,
   className = `shadow sm: flex`,
+  ...props
 }: {
   seed: () => Promise<void>;
   disabled: boolean;
   qrCodeDataLength?: number;
   className?: string;
 }) {
+  const { ...cardProps } = props;
+
   return (
-    <Card className={cn(`flex flex-col relative max-w-full`, className)}>
-      <CardHeader className="max-w-full">
-        <CardTitle className="truncate">No QR Data</CardTitle>
-        <CardDescription className="truncate">
-          Add some QR data to see it here!
-        </CardDescription>
+    <Card
+      className={cn(`flex flex-col relative max-w-full`, className)}
+      {...cardProps}
+    >
+      <CardHeader className="max-w-full mb-auto">
+        <CardTitle className="truncate">NO QR data</CardTitle>
+        <CardDescription className="truncate">Seed some data</CardDescription>
       </CardHeader>
-      <CardContent className="max-w-full grid gap-4 mt-auto mb-auto">
-        <div className="w-full items-end p-0 flex flex-row gap-4">
+      <CardContent className="max-w-full grid gap-4">
+        <div className="w-full items-center p-0 flex flex-row gap-4">
+          <Skeleton className="flex-none mr-1 h-6 w-6" />
+          <div className="flex-col space-y-1">
+            <p className="text-sm font-medium leading-none line-clamp-1">
+              Seed the data to start
+            </p>
+            <p className="text-sm text-muted-foreground truncate">
+              This action will seed {qrCodeDataLength} items
+            </p>
+          </div>
+        </div>
+        <div className="place-self-center mt-auto grid place-items-center w-[200px] h-[200px] rounded-md bg-foreground/5">
           <Button size={`lg`} onClick={seed} disabled={disabled}>
-            Seed QR Data
+            Seed Now
           </Button>
         </div>
       </CardContent>
 
       <CardFooter className="w-full flex flex-row justify-between	bg-muted py-4 mb-0">
-        <p className="text-sm text-muted-foreground truncate">
-          This will seed {qrCodeDataLength || `some`} items
-        </p>
+        <div className="flex gap-2">
+          <Skeleton className="h-8 w-8 px-2 py-2" />
+          <Skeleton className="h-8 w-8 px-2 py-2" />
+          <Skeleton className="h-8 w-8 px-2 py-2" />
+        </div>
+
+        <div className="flex gap-2">
+          <Skeleton className="h-9 w-9 px-2 py-2" />
+          <Skeleton className="h-9 w-9 px-2 py-2" />
+        </div>
       </CardFooter>
+      <Skeleton className="absolute cursor-pointer px-2 py-2 top-4 right-4 h-9 w-9" />
     </Card>
   );
 }
