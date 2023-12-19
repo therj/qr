@@ -1,5 +1,15 @@
 # Mero QR Changelog
 
+##
+
+_Design only release._
+
+- Engg: Cleanup css
+- Skeleton component for QR card
+- Introduce IndexedDB for storage
+- Allow user to seed on first load
+
+
 ## v1.0.0-alpha.3
 
 _Design only release._

@@ -5,6 +5,7 @@ export type TCard = React.ForwardRefExoticComponent<
 >;
 
 interface IBaseQr extends React.ComponentProps<TCard> {
+  id: string;
   type: QRCodeTypeEnum;
   title?: string;
   description?: string;

@@ -1,8 +1,11 @@
+import { nanoid } from 'nanoid';
+
 import { TQr } from '@/types/card';
 import QRCodeTypeEnum from '@/constants/enums';
 
 const qrCodeData: TQr[] = [
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.wifi,
     title: `Mero Internet`,
     description: `Second floor only`,
@@ -14,6 +17,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.link,
     title: `Personal Website`,
     description: `Visit my personal website`,
@@ -23,6 +27,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.text,
     title: `Important Note`,
     description: `Important note to self`,
@@ -31,6 +36,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.book,
     title: `The Abominable - Dan Simmons`,
     description: `A thrilling tale of high-altitude death and survival set on the snowy summits of Mount Everest, from the bestselling author of The Terror.`,
@@ -41,6 +47,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.contact,
     title: `Contact Information`,
     description: `Reach out to me anytime`,
@@ -51,6 +58,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.contact,
     title: `Business Card`,
     description: `Connect with me professionally`,
@@ -63,6 +71,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.sms,
     title: `Meeting with the God`,
     description: `Access code to the heaven`,
@@ -72,6 +81,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.link,
     title: `Social Media Profile`,
     description: `Connect with me on social media`,
@@ -80,6 +90,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.phone,
     title: `Emergency Contact`,
     description: `In case of emergencies`,
@@ -90,6 +101,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.email,
     title: `Send Mail to PO`,
     description: `Get Approval for deployment`,
@@ -101,6 +113,7 @@ const qrCodeData: TQr[] = [
     },
   },
   {
+    id: nanoid(),
     type: QRCodeTypeEnum.text,
     title: `Text Message`,
     description: `Important text`,
