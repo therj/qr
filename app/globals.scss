@@ -23,20 +23,19 @@
     --destructive-foreground: 0 0% 98%;
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
-    --ring: 142.1 76.2% 36.3%;
+    --ring: 142.1 76.2% 72.6%;
     --radius: 0.5rem;
-
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
   }
 
   /* Dark theme */
   :root[data-theme="dark"] {
     --background: 20 14.3% 4.1%;
     --foreground: 0 0% 95%;
+    // --background: 20 14.3% 8.1%;
+    // --foreground: 0 0% 85%;
     --card: 24 9.8% 10%;
     --card-foreground: 0 0% 95%;
+    // --card-foreground: 0 0% 85%;
     --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
     --primary: 142.1 70.6% 45.3%;
@@ -52,10 +51,6 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 142.4 71.8% 29.2%;
-
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
   }
 }
 
@@ -66,7 +61,6 @@
 
   body {
     @apply bg-background text-foreground;
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+    @apply min-w-[320px] min-h-screen;
   }
 }
