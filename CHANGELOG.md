@@ -1,13 +1,15 @@
 # Mero QR Changelog
 
-##
+## v1.0.0-alpha.4
 
 _Design only release._
 
 - Engg: Cleanup css
-- Skeleton component for QR card
+- Skeleton component for card loading state
 - Introduce IndexedDB for storage
-- Allow user to seed on first load
+- Allow to seed on first load
+- Can add a random QR from nav menu
+- Use data from IndexedDB to render cards
 
 
 ## v1.0.0-alpha.3
