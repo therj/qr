@@ -55,16 +55,16 @@ import {
   TSms,
   TText,
   TQr,
-} from '@/types/card';
-import QRCodeTypeEnum from '@/constants/enums';
+} from '@/types/qr';
+import { QRCodeTypeEnum } from '@/constants/enums';
 
-const getQrData = (type: string, data: TQr[`data`]) => {
+const getQrData = (type: QRCodeTypeEnum, data: TQr[`data`]) => {
   let Icon: React.ElementType;
   let typeText;
-  let dataTitleText = ` data.title`;
+  let dataTitleText = `data.title`;
   switch (type) {
+    /* eslint-disable no-case-declarations */
     case QRCodeTypeEnum.book:
-      // eslint-disable-next-line no-case-declarations
       const bookData = data as TBook[`data`];
       typeText = `Book`;
       dataTitleText = bookData.title;
@@ -75,7 +75,6 @@ const getQrData = (type: string, data: TQr[`data`]) => {
       break;
     case QRCodeTypeEnum.phone:
       typeText = `Phone`;
-      // eslint-disable-next-line no-case-declarations
       const phoneData = data as TPhone[`data`];
       dataTitleText = phoneData.phoneNumber;
       if (phoneData.phoneNumber) {
@@ -89,62 +88,60 @@ const getQrData = (type: string, data: TQr[`data`]) => {
       break;
     case QRCodeTypeEnum.contact:
       typeText = `Contact`;
-      // eslint-disable-next-line no-case-declarations
       const contactData = data as TContact[`data`];
 
       dataTitleText =
         contactData.name || contactData.email || contactData.phoneNumber;
 
       if (contactData.company) {
-        dataTitleText = `${dataTitleText} (${contactData.company})`;
-
         if (contactData.jobTitle) {
           dataTitleText = `${dataTitleText} (${contactData.company}, ${contactData.jobTitle})`;
+        } else {
+          dataTitleText = `${dataTitleText} (${contactData.company})`;
         }
       }
       Icon = UserIcon;
       break;
-    case `wifi`:
+    case QRCodeTypeEnum.wifi:
       typeText = `WiFi`;
-      // eslint-disable-next-line no-case-declarations
       const wifiData = data as TContact[`data`];
       dataTitleText = wifiData.name;
       Icon = WifiIcon;
       break;
-    case `link`:
+    case QRCodeTypeEnum.link:
       typeText = `Link`;
-      // eslint-disable-next-line no-case-declarations
       const linkData = data as TLink[`data`];
       dataTitleText = linkData.url;
       Icon = LinkIcon;
       break;
-    case `text`:
+    case QRCodeTypeEnum.text:
       typeText = `Text`;
-      // eslint-disable-next-line no-case-declarations
       const textData = data as TText[`data`];
       dataTitleText = textData.text;
       Icon = TextIcon;
       break;
-    case `email`:
+    case QRCodeTypeEnum.email:
       typeText = `Email`;
-      // eslint-disable-next-line no-case-declarations
       const emailData = data as TEmail[`data`];
 
-      dataTitleText = `Email: ${emailData.body || ``}`;
+      if (emailData.subject) {
+        dataTitleText = emailData.subject;
+      }
 
       Icon = EnvelopeIcon;
       break;
-    case `sms`:
+    case QRCodeTypeEnum.sms:
       typeText = `SMS Message`;
-      // eslint-disable-next-line no-case-declarations
       const smsData = data as TSms[`data`];
-      dataTitleText = smsData.text;
+      dataTitleText = smsData.text || `SMS for ${smsData.to}`;
       Icon = ChatBubbleBottomCenterTextIcon;
       break;
     default:
       typeText = `Unknown`;
       Icon = EyeIcon;
+    /* eslint-enable no-case-declarations */
   }
+
   return {
     typeText,
     Icon,
