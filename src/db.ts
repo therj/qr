@@ -12,7 +12,7 @@ export class MySubClassedDexie extends Dexie {
   constructor() {
     super(`mero_qr_idb`, { autoOpen: true });
     this.version(1).stores({
-      qrs: `id, type, title, description, isBookmark, data`,
+      qrs: `id, type, title, description, isBookmark, *createdAt, *updatedAt, data`,
     });
   }
 }

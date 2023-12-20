@@ -4,12 +4,14 @@ export type TCard = React.ForwardRefExoticComponent<
   React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>
 >;
 
-interface IBaseQr extends React.ComponentProps<TCard> {
+export interface IBaseQr extends React.ComponentProps<TCard> {
   id: string;
   type: QRCodeTypeEnum;
   title?: string;
   description?: string;
   isBookmark?: boolean;
+  createdAt: string; // ISOString
+  updatedAt: string; // ISOString
 }
 
 export type TWifi = IBaseQr & {

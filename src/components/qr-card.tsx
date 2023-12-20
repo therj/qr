@@ -79,7 +79,10 @@ const getQrData = (type: string, data: TQr[`data`]) => {
       const phoneData = data as TPhone[`data`];
       dataTitleText = phoneData.phoneNumber;
       if (phoneData.phoneNumber) {
-        dataTitleText = `${dataTitleText} (${phoneData.name})`;
+        dataTitleText = `${dataTitleText}`;
+        if (phoneData.name) {
+          dataTitleText = `${dataTitleText} (${phoneData.name})`;
+        }
       }
 
       Icon = PhoneIcon;
