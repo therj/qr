@@ -3,11 +3,25 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { ArrowPathIcon, HomeIcon, PlayIcon } from '@heroicons/react/24/outline';
+import { db } from '@/db';
+import { PlusIcon } from '@radix-ui/react-icons';
+import getQrCodeData from '@/lib/qrGen';
 import { Button } from './ui/button';
 import { ThemeToggle } from './theme-provider';
 
+const deleteAllItems = () => {
+  db.qrs.clear();
+};
+
+const addItems = () => {
+  const data = getQrCodeData();
+  db.qrs.add(data);
+};
+
 function NavBar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const isHome = usePathname() === `/`;
+  const isDesign = usePathname() === `/design`;
   const baseClasses = `border-b-2 py-2 px-4 sm:px-8 lg:px-4`;
 
   return (
@@ -41,19 +55,71 @@ function NavBar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
             </Button>
           </Link>
         </Button>
-        <div className="flex space-x-3 md:space-x-0 rtl:space-x-reverse gap-2">
-          <ThemeToggle className="sm:order-2" />
+        <div className="flex flex-row items-center justify-stretch space-x-3 md:space-x-0 rtl:space-x-reverse gap-2">
+          <ThemeToggle className="order-2" />
+          {isDesign && (
+            <Button
+              size={`lg`}
+              variant={`outline`}
+              className="text-base p-2 hover:cursor-pointer"
+              asChild
+            >
+              <Button
+                variant={`link`}
+                className="flex flex-row items-center gap-2 text-destructive hover:bg-destructive hover:bg-opacity-10"
+                onClick={deleteAllItems}
+                title="Clear all QRs"
+              >
+                <ArrowPathIcon className="w-6 h-6 px-px py-px" />
+              </Button>
+            </Button>
+          )}
+          {isDesign && (
+            <Button
+              size={`lg`}
+              variant={`outline`}
+              className="text-base p-2 hover:cursor-pointer"
+              asChild
+            >
+              <Button
+                variant={`link`}
+                className="flex flex-row items-center gap-2 text-primary hover:bg-primary hover:bg-opacity-10"
+                onClick={addItems}
+                title="Add a QR"
+              >
+                <PlusIcon className="w-6 h-6 px-px py-px" />
+              </Button>
+            </Button>
+          )}
           <Button
             size={`lg`}
-            variant={`secondary`}
-            className="text-base px-4"
+            variant={`outline`}
+            className="text-base px-2"
             asChild
           >
-            {isHome ? (
-              <Link href="/design">See Design</Link>
-            ) : (
-              <Link href="/">Home</Link>
-            )}
+            <>
+              {isHome && (
+                <Link href="/design">
+                  <div className="flex items-center flex-row gap-2">
+                    <PlayIcon className="w-6 h-6 px-px py-px" />
+                    <span className="sr-onlyy">Design</span>
+                  </div>
+                </Link>
+              )}
+
+              {!isHome && (
+                <Link href="/">
+                  <Button
+                    size={`lg`}
+                    variant={`outline`}
+                    className="text-base px-2 flex flex-row items-center gap-2"
+                  >
+                    <HomeIcon className="w-6 h-6 px-px py-px" />
+                    <span className="sr-only sm:not-sr-only">Home</span>
+                  </Button>
+                </Link>
+              )}
+            </>
           </Button>
         </div>
       </div>
