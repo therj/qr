@@ -1,7 +1,7 @@
 'use client';
 
 import Dexie, { Table } from 'dexie';
-import { TQr } from '@/types/card';
+import { TQr } from '@/types/qr';
 
 export class MySubClassedDexie extends Dexie {
   // 'qrs' is added by dexie when declaring the stores()

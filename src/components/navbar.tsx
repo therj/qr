@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { ArrowPathIcon, HomeIcon, PlayIcon } from '@heroicons/react/24/outline';
 import { db } from '@/db';
 import { PlusIcon } from '@radix-ui/react-icons';
-import getQrCodeData from '@/lib/qrGen';
+import getQrCodeData from '@/helpers/qr/generator';
 import { Button } from './ui/button';
 import { ThemeToggle } from './theme-provider';
 

@@ -4,7 +4,7 @@ import { Inter as FontSans } from 'next/font/google';
 import './globals.scss';
 
 import { cn } from '@/lib/utils';
-import { app } from '@/constants';
+import { info as appInfo } from '@/constants/app';
 import { AppVersion } from '@/components/AppVersion';
 import { NavBar } from '@/components/navbar';
 
@@ -17,11 +17,11 @@ const fontSans = FontSans({
 
 export const metadata: Metadata = {
   title: {
-    template: `%s | ${app.title}`,
-    default: app.title,
+    template: `%s | ${appInfo.title}`,
+    default: appInfo.title,
   },
-  description: app.descriptionLong,
-  applicationName: app.title,
+  description: appInfo.descriptionLong,
+  applicationName: appInfo.title,
   other: {
     'revisit-after': `3 days`,
   },

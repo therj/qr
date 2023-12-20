@@ -1,5 +1,13 @@
 # Mero QR Changelog
 
+## v1.0.0-alpha.5
+
+_Design only release._
+
+- Seed data will now use random past dates, instead of a fixed one. This will sort the cards in a random order.
+- `+` icon from navbar will add qr of any random type (was limited to Phone/Text/Wifi)
+- Prepared for mega update with internal code restructure
+
 ## v1.0.0-alpha.4
 
 _Design only release._

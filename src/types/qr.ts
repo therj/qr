@@ -1,4 +1,4 @@
-import QRCodeTypeEnum from '../constants/enums';
+import { QRCodeTypeEnum, NetworkTypeEnum } from '@/constants/enums';
 
 export type TCard = React.ForwardRefExoticComponent<
   React.HTMLAttributes<HTMLDivElement> & React.RefAttributes<HTMLDivElement>
@@ -14,20 +14,20 @@ export interface IBaseQr extends React.ComponentProps<TCard> {
   updatedAt: string; // ISOString
 }
 
+export type TWifiOpenData = {
+  name: string;
+  networkType: NetworkTypeEnum.open;
+};
+
+export type TWifiSecureData = {
+  name: string;
+  networkType: NetworkTypeEnum.wep | NetworkTypeEnum.wpa_wpa2;
+  password: string;
+};
+
 export type TWifi = IBaseQr & {
   type: QRCodeTypeEnum.wifi;
-  data: {
-    name: string;
-    networkType: string;
-  } & (
-    | {
-        networkType: `open`;
-      }
-    | {
-        networkType: `wep` | `wpa/wpa2`;
-        password: string;
-      }
-  );
+  data: TWifiOpenData | TWifiSecureData;
 };
 
 export type TLink = IBaseQr & {
@@ -78,7 +78,7 @@ export type TSms = IBaseQr & {
   type: QRCodeTypeEnum.sms;
   data: {
     to: string;
-    text: string;
+    text?: string;
   };
 };
 

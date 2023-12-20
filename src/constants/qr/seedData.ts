@@ -1,7 +1,12 @@
 import { nanoid } from 'nanoid';
 
-import { TQr } from '@/types/card';
-import QRCodeTypeEnum from '@/constants/enums';
+import { TQr } from '@/types/qr';
+import { QRCodeTypeEnum, NetworkTypeEnum } from '@/constants/enums';
+import { faker } from '@faker-js/faker';
+
+const getRecentDate = (days: number = 30): string => {
+  return faker.date.recent({ days }).toISOString();
+};
 
 const qrCodeData: TQr[] = [
   {
@@ -10,10 +15,10 @@ const qrCodeData: TQr[] = [
     title: `Mero Internet`,
     description: `Second floor only`,
     isBookmark: true,
-    createdAt: new Date(`2023-12-20T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-20T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
-      networkType: `wpa/wpa2`,
+      networkType: NetworkTypeEnum.wpa_wpa2,
       name: `ALHN-69B5`,
       password: `12345678`,
     },
@@ -24,8 +29,8 @@ const qrCodeData: TQr[] = [
     title: `Personal Website`,
     description: `Visit my personal website`,
     isBookmark: true,
-    createdAt: new Date(`2023-12-19T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-19T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       url: `https://www.example.com`,
     },
@@ -35,8 +40,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.text,
     title: `Important Note`,
     description: `Important note to self`,
-    createdAt: new Date(`2023-12-18T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-18T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       text: `Remember to buy groceries. Remember to buy groceries. Again! Remember to buy groceries. Remember to buy groceries. Again!`,
     },
@@ -46,8 +51,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.book,
     title: `The Abominable - Dan Simmons`,
     description: `A thrilling tale of high-altitude death and survival set on the snowy summits of Mount Everest, from the bestselling author of The Terror.`,
-    createdAt: new Date(`2023-12-16T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-16T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       title: `The Abominable`,
       author: `Dan Simmons`,
@@ -59,8 +64,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.contact,
     title: `Contact Information`,
     description: `Reach out to me anytime`,
-    createdAt: new Date(`2023-12-16T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-16T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       name: `John Doe`,
       phoneNumber: `123-456-7890`,
@@ -72,8 +77,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.contact,
     title: `Business Card`,
     description: `Connect with me professionally`,
-    createdAt: new Date(`2023-12-15T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-15T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       name: `Jane Smith`,
       jobTitle: `CEO`,
@@ -87,8 +92,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.sms,
     title: `Meeting with the God`,
     description: `Access code to the heaven`,
-    createdAt: new Date(`2023-12-15T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-15T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
 
     data: {
       to: `9876543210`,
@@ -100,8 +105,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.link,
     title: `Social Media Profile`,
     description: `Connect with me on social media`,
-    createdAt: new Date(`2023-12-15T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-12-15T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
 
     data: {
       url: `https://www.twitter.com/example`,
@@ -112,8 +117,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.phone,
     title: `Emergency Contact`,
     description: `In case of emergencies`,
-    createdAt: new Date(`2023-11-23T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-11-23T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       name: `John Doe`,
       phoneNumber: `123-456-7890`,
@@ -125,12 +130,12 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.email,
     title: `Send Mail to PO`,
     description: `Get Approval for deployment`,
-    createdAt: new Date(`2023-11-23T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-11-23T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       to: `johndoe@example.com`,
       cc: `johndoe2@example.com`,
-      subject: `Emergency Services`,
+      subject: `Verified on development environment`,
       body: `Deployment Approval, please`,
     },
   },
@@ -139,8 +144,8 @@ const qrCodeData: TQr[] = [
     type: QRCodeTypeEnum.text,
     title: `Text Message`,
     description: `Important text`,
-    createdAt: new Date(`2023-11-01T00:00:00.000Z`).toISOString(),
-    updatedAt: new Date(`2023-11-01T00:00:00.000Z`).toISOString(),
+    createdAt: getRecentDate(),
+    updatedAt: getRecentDate(),
     data: {
       text: `Read this important message!`,
     },

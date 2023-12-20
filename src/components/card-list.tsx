@@ -4,8 +4,7 @@ import { useLiveQuery } from 'dexie-react-hooks';
 import { db } from '@/db';
 
 import { cn } from '@/lib/utils';
-import { qrCodeSeedData } from '@/constants';
-
+import qrCodeSeedData from '@/constants/qr/seedData';
 import { useEffect, useState } from 'react';
 import { QRCard } from './qr-card';
 import ExtraCards from './extra-cards.temp';
