@@ -79,7 +79,10 @@ const getQrData = (type: string, data: TQr[`data`]) => {
       const phoneData = data as TPhone[`data`];
       dataTitleText = phoneData.phoneNumber;
       if (phoneData.phoneNumber) {
-        dataTitleText = `${dataTitleText} (${phoneData.name})`;
+        dataTitleText = `${dataTitleText}`;
+        if (phoneData.name) {
+          dataTitleText = `${dataTitleText} (${phoneData.name})`;
+        }
       }
 
       Icon = PhoneIcon;
@@ -149,10 +152,7 @@ const getQrData = (type: string, data: TQr[`data`]) => {
   };
 };
 
-export function QRCard({
-  className = `items - center shadow sm: flex`,
-  ...props
-}: TQr) {
+export function QRCard({ className = `shadow sm:flex`, ...props }: TQr) {
   const { type, title, description, data, isBookmark, ...cardProps } = props;
   const { Icon, typeText, dataTitleText } = getQrData(type, data);
   const cardTitleText = title ?? `Untitled ${typeText ?? `Item`}`;
