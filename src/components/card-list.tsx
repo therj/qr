@@ -19,7 +19,10 @@ const CardList: React.FC<cardListProps> = ({ className }) => {
 
   const idbQrs = useLiveQuery(async () => {
     try {
-      const qrs = await db.qrs.orderBy(`updatedAt`).reverse().toArray();
+      const qrs = await db.qrs
+        .orderBy(`updatedAt`)
+        .reverse()
+        .sortBy(`isBookmark`);
 
       return qrs;
     } catch (error) {
