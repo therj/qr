@@ -29,12 +29,12 @@ import { TQr } from '@/types/qr';
 import { CheckedState } from '@radix-ui/react-checkbox';
 import { Button } from './ui/button';
 
-const addItems = (
+const addItems = async (
   type: QRCodeTypeEnum,
   options?: Partial<Omit<TQr, `type`>>
 ) => {
   const data = getQrCodeData(type, options);
-  db.qrs.add(data);
+  await db.qrs.add(data);
 };
 
 export interface AddQrModalProps extends DialogProps {
@@ -122,8 +122,8 @@ const AddQrModal = ({ onToggleDialog, isOpen }: AddQrModalProps) => {
           <DialogFooter className="sm:justify-betweenX dialog-footer">
             <Button
               type="button"
-              onClick={() => {
-                addItems(QRToAdd!, { isBookmark: isPinned === true });
+              onClick={async () => {
+                await addItems(QRToAdd!, { isBookmark: isPinned === true });
                 toggleDialog(false);
               }}
               disabled={!QRToAdd}
