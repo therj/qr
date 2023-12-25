@@ -1,12 +1,12 @@
 export enum QRCodeTypeEnum {
-  book = `book`,
-  contact = `contact`,
-  email = `email`,
-  link = `link`,
-  phone = `phone`,
-  sms = `sms`,
-  text = `text`,
-  wifi = `wifi`,
+  book = `Book`,
+  contact = `Contact`,
+  email = `Email`,
+  link = `Link`,
+  phone = `Phone`,
+  sms = `Sms`,
+  text = `Text`,
+  wifi = `Wifi`,
 }
 
 export enum NetworkTypeEnum {
@@ -14,3 +14,20 @@ export enum NetworkTypeEnum {
   wep = `wep`,
   wpa_wpa2 = `wpa/wpa2`,
 }
+
+export const QRGroup = [
+  {
+    name: `Personal`,
+    items: [
+      QRCodeTypeEnum.link,
+      QRCodeTypeEnum.email,
+      QRCodeTypeEnum.phone,
+      QRCodeTypeEnum.sms,
+      QRCodeTypeEnum.contact,
+    ],
+  },
+  {
+    name: `Utilities`,
+    items: [QRCodeTypeEnum.text, QRCodeTypeEnum.wifi, QRCodeTypeEnum.book],
+  },
+];

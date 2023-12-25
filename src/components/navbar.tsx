@@ -6,23 +6,25 @@ import { cn } from '@/lib/utils';
 import { ArrowPathIcon, HomeIcon, PlayIcon } from '@heroicons/react/24/outline';
 import { db } from '@/db';
 import { PlusIcon } from '@radix-ui/react-icons';
-import getQrCodeData from '@/helpers/qr/generator';
+import { useState } from 'react';
 import { Button } from './ui/button';
 import { ThemeToggle } from './theme-provider';
+import AddQrModal from './add-qr-modal';
 
 const deleteAllItems = () => {
   db.qrs.clear();
-};
-
-const addItems = () => {
-  const data = getQrCodeData();
-  db.qrs.add(data);
 };
 
 function NavBar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
   const isHome = usePathname() === `/`;
   const isDesign = usePathname() === `/design`;
   const baseClasses = `border-b-2 py-2 px-4 sm:px-8 lg:px-4`;
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleDialog = (setOpen: boolean) => {
+    setIsOpen(setOpen);
+  };
 
   return (
     <nav
@@ -84,7 +86,7 @@ function NavBar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
               <Button
                 variant={`link`}
                 className="flex flex-row items-center gap-2 text-primary hover:bg-primary hover:bg-opacity-10"
-                onClick={addItems}
+                onClick={() => toggleDialog(true)}
                 title="Add a QR"
               >
                 <PlusIcon className="w-6 h-6 px-px py-px" />
@@ -123,6 +125,7 @@ function NavBar({ className, ...props }: React.HTMLAttributes<HTMLDivElement>) {
           </Button>
         </div>
       </div>
+      <AddQrModal onToggleDialog={toggleDialog} isOpen={isOpen} />
     </nav>
   );
 }
