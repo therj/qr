@@ -1,5 +1,13 @@
 # Mero QR Changelog
 
+## v1.0.0-alpha.6
+
+_Design only release._
+
+- Choose QR type while adding new item from nav bar
+- Ability to set pinned state on adding new item
+- Pinned items will be shown on top of the list
+
 ## v1.0.0-alpha.5
 
 _Design only release._
